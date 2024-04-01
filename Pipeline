@@ -1,0 +1,29 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("Extract Data"){
+            steps{
+                sh 'python3.10 data_extract.py'
+            }
+        }
+         stage("Visualize Data"){
+            steps{
+                sh 'python3.10 datavisualization.py'
+            }
+        }
+        stage("Preprocess Data"){
+            steps{
+                sh 'python3.10 data_transformation.py'
+            }
+        }
+      
+    }
+    post{
+       
+        always {
+            archiveArtifacts artifacts: 'train_dataset.pkl', onlyIfSuccessful: true
+        }
+            }
+        
+}
