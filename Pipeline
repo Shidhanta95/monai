@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("Extract Data"){
             steps{
-                sh 'python3.10 data_extract.py'
+                sh 'python3.10 extract_data.py'
             }
         }
          stage("Visualize Data"){
